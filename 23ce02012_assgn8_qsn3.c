@@ -1,32 +1,25 @@
 #include<stdio.h>
 
-void finder(int *nums,int n){
-    for(int i=0;i<n+1;i++){
-        for(int j=i+1;j<n+1;j++){
-            if(*(nums+i) == *(nums+j)){
-                printf("%d occurs twice in the array.",*(nums+i));
-                return;
-            }
-        }
-    }
-}
+int main() {
+    int arr[] = {1,2,3,4,5,6,7,8,9,10};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-int main(){
+    int *start = arr;
+    int *end = arr + size -1;
 
-    int n;
-    printf("Enter value of n: ");
-    scanf("%d",&n);
+    while(start < end) {
+        int temp = *start;
+        *start = *end;
+        *end = temp;
 
-    int nums[n+1];
-    printf("Enter array elements: ");
-    for(int i=0;i<n+1;i++){
-        scanf("%d",nums+i);
+        start++;
+        end--;
     }
 
-    int *pnums;
-    pnums=nums;
-
-    finder(pnums,n);
+    printf("Reversed array: ");
+    for(int i=0; i<size; i++) {
+        printf("%d ", arr[i]);
+    }
 
     return 0;
 }
